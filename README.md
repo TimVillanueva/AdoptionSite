@@ -11,6 +11,21 @@ The goal of this project is to utilize the PetFinder API to create a responsive 
 - Store saved pets in state
 - Login page, display username on header
 
+##### Components
+```
+<Header/>
+	<LoginPage/>
+<Featured/>
+<Main/>
+	<GuidedSearch/>
+	<AnimalGrid/>
+		<AnimalCards/>
+		<AdvancedSearch/>
+	<AnimalDetails/>
+	
+<Footer/>
+```
+
 
 #### UI Goals
 - Header
@@ -32,8 +47,21 @@ The goal of this project is to utilize the PetFinder API to create a responsive 
 - Footer
 	- persists across pages
 	- socials / contact
-	
-	
+
+```
+import { Client } from "@petfinder/petfinder-js"
+import './App.css';
+
+function App() {
+
+const client = new Client({apiKey: "GcPIe5dN6Jfrr1Hk6IwBkrM2FzHHzwPRp32euguJP377DTtkEs", secret: "L6MqHdC9k1ST3BNW8IPM6i8q1AkHAvuCPgmXd6yw"})
+
+client.animal.search({location: "TX"})
+.then(function(response){
+  console.log(response)
+})
+```
+
 
 	
 ## Wireframe Images
