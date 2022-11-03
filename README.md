@@ -3,6 +3,8 @@
 ## Goals
 The goal of this project is to utilize the PetFinder API to create a responsive user-friendly adoption website
 
+Trello - https://trello.com/b/bSpz8036/pet-adoption-board
+
 #### Code Goals
 - Route between pages
 - use Params to get individual pets
