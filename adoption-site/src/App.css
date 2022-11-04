@@ -20,6 +20,8 @@ html{
 }
 .header-other-container{
     padding-right: 10px;
+    display: flex;
+    justify-content: space-evenly;
 }
 .header-login{
     font-size: 30px;
@@ -146,12 +148,14 @@ border-bottom: 4px green solid;
     margin: 10px;
     border-radius: 150px;
     border: 3px solid black;
+    box-shadow: 2px 2px 1px grey;
 }
 .guided-buttons:hover{
     background-color: #69A88D;
 }
 .guided-buttons:active{
     background-color: #398564;
+    transform:translateX(2px)
 }
 .footer{
     border-bottom: none;
@@ -177,10 +181,10 @@ border-bottom: 4px green solid;
     text-align:center;
     width:40%;
     height: 60vh;
-    border: 2px solid black;
     margin: 10px;
     background-color:whitesmoke;
     border-radius: 20px;
+    box-shadow: 2px 2px 2px grey;
 }
 .login-form{
     display:flex;
@@ -194,12 +198,13 @@ border-bottom: 4px green solid;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #69A88D ; 
     padding-left: 20px;
+    margin-bottom: 10px;
 }
 .login-submit{
     width: 50%;
     height: 30px;
     border-radius: 10px;
-    margin: 20px 0 10px 0px;
+    margin: 10px 0 10px 0px;
 }
 .login-header{
     align-self: flex-start;
@@ -209,5 +214,5 @@ border-bottom: 4px green solid;
 .login-alternates{
     border: 1px solid rgb(168, 163, 163);
     width: 80%;
-    margin: 15px 10% 0px 10%;
+    margin: 10px 10% 0px 10%;
 }

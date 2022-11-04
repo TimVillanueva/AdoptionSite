@@ -1,23 +1,29 @@
-import { Client } from '@petfinder/petfinder-js'
 import './App.css';
-import {client} from './API_KEY'
 import Header from './components/Header'
 import Landing from './components/Landing'
 import Footer from './components/Footer'
 import Saved from './components/Saved';
 import Login from './components/Login'
+import LogOut from './components/LogOut'
 import { Routes, Route } from 'react-router-dom'
+import {useState} from 'react'
 
 function App() {
 
+const [logInStatus, setLogInStatus] = useState(false);
+const getLogInStatus = () => {
+  logInStatus ? setLogInStatus(false) : setLogInStatus(true)
+}
+
     return (
       <div className="App">
-          <Header/>
+          <Header logInStatus= {logInStatus}/>
         <main>
         <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path='/Saved' element={<Saved/>}/>
-          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Login" element={<Login getLogInStatus={getLogInStatus} />}/>
+          <Route path="/LogOut" element={<LogOut getLogInStatus={getLogInStatus}/>}/>
         </Routes>
         </main>
           <Footer/>
