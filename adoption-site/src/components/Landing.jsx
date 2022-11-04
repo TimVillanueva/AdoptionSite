@@ -14,14 +14,13 @@ function Landing(props) {
                 <form className = "landing-search-form">
                     <input type="text" placeholder="Search Pets!" id="search"/>
                     <input type="text" placeholder="Location" id="location"/>
-                    <input type="submit" value="go!"/>
+                    <input  type="submit" value="go!" id="landing-search-button"/>
                 </form>
                 <div className="guided-search-container">
                     <h1>Let us help you pick your purrfect pet!</h1>
                     <GuidedSearch/>
                 </div> 
             </div>
-            
         </div>
     );
 }

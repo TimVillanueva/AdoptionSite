@@ -10,19 +10,16 @@ import { Routes, Route } from 'react-router-dom'
 
 function App() {
 
-  // client.animalData.breeds('Dog')
-  // .then(function(response){
-  //   console.log(response)
-  // })
-  
     return (
       <div className="App">
           <Header/>
+        <main>
         <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path='/Saved' element={<Saved/>}/>
           <Route path="/Login" element={<Login/>}/>
         </Routes>
+        </main>
           <Footer/>
       </div>
     );
