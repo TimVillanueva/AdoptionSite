@@ -26,7 +26,7 @@ function Header(props) {
                 <h1 className="header-login" style={{
                     position:"absolute",
                     right: "200px",
-                }}>Happy Adopting, username!</h1>
+                }}>Happy Adopting, {props.username}!</h1>
                 <Link to="/LogOut"  style={{
                     fontSize: "30px",
                     position: "absolute",

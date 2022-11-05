@@ -6,13 +6,13 @@ function Footer(props) {
         <div className="footer">
             <img id="footer-logo" src={require('../Photos/catIcon.png') }/>
             <img id="footer-logo" src={require('../Photos/Name.png') }/>
-
+            <div className="footer-info">
+                <h2>BSPA@gmail.com</h2>
+                <h2>Austin, TX</h2>
+                <h2>Legal</h2>
+            </div>
         </div>
-        <div className="footer-info">
-            <h2>BSPA@gmail.com</h2>
-            <h2>Austin, TX</h2>
-            <h2>Legal</h2>
-        </div>
+        
         </>
     );
 }

@@ -3,6 +3,7 @@ import {AiOutlineMail} from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import {FcGoogle} from 'react-icons/fc'
 import {BsFacebook} from 'react-icons/bs'
+import { FaExclamation } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 function Login(props) {
@@ -26,7 +27,7 @@ history(-1);
                     bottom: "-6px",
                 }}/></h3>
                 
-                <input className="login-input"type="username" /> 
+                <input className="login-input"type="username" value={props.username} onChange ={(e)=>props.getUsername(e.target.value)} /> 
                 
                 <h3 className="login-header">password<RiLockPasswordLine style={{
                     fontSize:"30px",
@@ -38,7 +39,8 @@ history(-1);
                 
                 <input type="submit" className = "login-submit" />
             </form>
-            <a href="">Forgot Password?</a>
+            <a href=""  style={{width: "100px"}}>Forgot Password?</a> 
+            
             <div className="login-alternates"></div>
             <h2>or Sign Up with </h2>
             <FcGoogle style={{
@@ -50,7 +52,8 @@ history(-1);
                 padding: "0 0 0 20px"
             }}/>
             </div>
-                
+            <div className="login-hider"><FaExclamation style={{}}/>Help!</div>
+            <div className="login-help">Input any username and password to activate functionality</div>
         </div>
     );
 }

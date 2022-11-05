@@ -12,17 +12,29 @@ function App() {
 
 const [logInStatus, setLogInStatus] = useState(false);
 const getLogInStatus = () => {
-  logInStatus ? setLogInStatus(false) : setLogInStatus(true)
+  if (logInStatus)
+  { 
+    setUsername("")
+    setLogInStatus(false) 
+  }else{ 
+    setLogInStatus(true)
+  }
+}
+
+const [username, setUsername] = useState('');
+const getUsername = (input) =>{
+  setUsername(input)
+  console.log(username)
 }
 
     return (
       <div className="App">
-          <Header logInStatus= {logInStatus}/>
+          <Header logInStatus= {logInStatus} username={username}/>
         <main>
         <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path='/Saved' element={<Saved/>}/>
-          <Route path="/Login" element={<Login getLogInStatus={getLogInStatus} />}/>
+          <Route path="/Login" element={<Login getLogInStatus={getLogInStatus} username={username} getUsername= {getUsername}/>}/>
           <Route path="/LogOut" element={<LogOut getLogInStatus={getLogInStatus}/>}/>
         </Routes>
         </main>
