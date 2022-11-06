@@ -1,14 +1,22 @@
 import React from 'react';
 import {FaCat , FaDog} from 'react-icons/fa'
+import {AnimalDetails} from './AnimalDetails'
+import { useNavigate } from 'react-router-dom'
 
 
 
 function FeaturedCard(props) {
 
+let navigate = useNavigate();
+
+const showDetails = (id) => {
+    navigate(`${id}`);
+}
+
     if (props.pet.photos.length>0)
     {
         return (
-            <div className="featured-card">
+            <div className="featured-card" onClick ={()=>showDetails(props.pet.id)}>
                 <h1 className="featured-card-header">{props.pet.name}</h1>
                 <div className = "featured-box">
                     <img id='featured-photo' src= {props.pet.photos[0].small}/>
@@ -25,7 +33,7 @@ function FeaturedCard(props) {
 
     else if (props.pet.type === "Cat") {
     return (
-        <div className="featured-card">
+        <div className="featured-card" onClick ={()=>showDetails(props.pet.id)}>
             <h1 className="featured-card-header">{props.pet.name}</h1>
             <div className = "featured-box">
                 <FaCat 
@@ -44,7 +52,7 @@ function FeaturedCard(props) {
     }
     else if (props.pet.type==="Dog"){
         return (
-            <div className="featured-card">
+            <div className="featured-card" onClick ={()=>showDetails(props.pet.id)}>
                 <h1 className="featured-card-header">{props.pet.name}</h1>
                 <div className = "featured-box">
                     <FaDog 

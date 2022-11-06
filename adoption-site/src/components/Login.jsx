@@ -53,7 +53,7 @@ history(-1);
             }}/>
             </div>
             <div className="login-hider"><FaExclamation style={{}}/>Help!</div>
-            <div className="login-help">Input any username and password to activate functionality</div>
+            <div className="login-help"><p style={{marginTop:"0"}}>Input any username and password to activate functionality.</p>  Currently, 'Forgot Password?' and the sign-up buttons have no function.</div>
         </div>
     );
 }
