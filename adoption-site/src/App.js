@@ -26,30 +26,8 @@ const initialState = {
   name:'',
 }
 const [searchCriteria, setSearchCriteria] = useState(initialState)
-
-// const [test, setTest] = useState([]);
-
-
-// useEffect(()=>{
-//     const getAnimalData = async () => {
-//         let token = await axios.post(
-//             'https://api.petfinder.com/v2/oauth2/token',
-//             `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${SECRET}`,
-//             {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-//         );
-//     token = token.data.access_token;
-//     const response = await axios.get('https://api.petfinder.com/v2/animals/age', {
-//         params: {
-//         },
-//         headers: {'Authorization': `Bearer ${token}`}
-//     });
-//     console.log(response)
-//     // setTest(response.data.animals)
-//     return response;
-//     }
-//     getAnimalData();
-// }, [])
-
+const [currentSearch, setCurrentSearch] = useState([])
+const [featuredPet, setFeaturedPet] = useState([])
 
 const [logInStatus, setLogInStatus] = useState(false);
 const getLogInStatus = () => {
@@ -71,7 +49,7 @@ const getUsername = (input) =>{
     return (
       <div className="App">
           <Header logInStatus= {logInStatus} username={username}/>
-      <DataContext.Provider value={{searchCriteria, setSearchCriteria}}>
+      <DataContext.Provider value={{searchCriteria, setSearchCriteria, currentSearch, setCurrentSearch, featuredPet, setFeaturedPet}}>
         <main>
         <Routes>
           <Route path="/" element={<Landing initialState={initialState}/>} />
@@ -80,6 +58,7 @@ const getUsername = (input) =>{
           <Route path="/LogOut" element={<LogOut getLogInStatus={getLogInStatus}/>}/>
           <Route path = "/:id" element={<AnimalDetails/>}/>
           <Route path="/Search" element={<Search/>}/>
+          <Route path="/Search/:id" element = {<AnimalDetails/>}/>
         </Routes>
         </main>
       </DataContext.Provider>
@@ -105,3 +84,26 @@ const getUsername = (input) =>{
 
 
   {/* <img src={require('../Photos/stockCat.jpeg')}/> */}
+
+  // const [test, setTest] = useState([]);
+
+
+// useEffect(()=>{
+//     const getAnimalData = async () => {
+//         let token = await axios.post(
+//             'https://api.petfinder.com/v2/oauth2/token',
+//             `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${SECRET}`,
+//             {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+//         );
+//     token = token.data.access_token;
+//     const response = await axios.get('https://api.petfinder.com/v2/animals/age', {
+//         params: {
+//         },
+//         headers: {'Authorization': `Bearer ${token}`}
+//     });
+//     console.log(response)
+//     // setTest(response.data.animals)
+//     return response;
+//     }
+//     getAnimalData();
+// }, [])

@@ -51,10 +51,11 @@ if (TYPES.includes(input)) {
     temp.size = input;
     setSearchCriteria(temp)
 } else {
-    temp.breed += input;
+    temp.breed = `${input}`;
     setSearchCriteria(temp)
     // setSearchCriteria({...searchCriteria, breed: input})
 }
+console.log(searchCriteria)
 }
 
 

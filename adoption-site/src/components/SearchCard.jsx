@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 function SearchCard(props) {
 
+
 let navigate = useNavigate();
 let breed = ""; 
 if (props.pet.breeds.mixed === true && props.pet.breeds.secondary != null) {
@@ -19,10 +20,8 @@ if (props.pet.photos.length>0){
 }
 
 const handleClick = (id) => {
-navigate(`${props.pet.id}`)
+navigate(`${id}`)
 }
-
-// console.log(props.pet)
 
     return (
         <div className='search-card' onClick = {()=>handleClick(props.pet.id)}>

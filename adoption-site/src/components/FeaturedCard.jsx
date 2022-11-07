@@ -2,15 +2,18 @@ import React from 'react';
 import {FaCat , FaDog} from 'react-icons/fa'
 import {AnimalDetails} from './AnimalDetails'
 import { useNavigate } from 'react-router-dom'
-
+import {useContext} from 'react'
+import {DataContext} from '../DataContext'
 
 
 function FeaturedCard(props) {
 
+    const {featuredPet, setFeaturedPet} = useContext(DataContext)
 let navigate = useNavigate();
 
 const showDetails = (id) => {
-    navigate(`${id}`);
+    setFeaturedPet(props.pet)
+    navigate(`Search/${id}`);
 }
 
     if (props.pet.photos.length>0)

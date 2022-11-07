@@ -18,8 +18,8 @@ const {searchCriteria, setSearchCriteria} = useContext(DataContext)
 let location= searchCriteria.zip;
 location === '' ? location = "Anywhere" : location = `in ${searchCriteria.zip}`;
 
-const [currentSearch, setCurrentSearch] = useState([]);
-
+// const [currentSearch, setCurrentSearch] = useState([]);
+const {currentSearch, setCurrentSearch} = useContext(DataContext)
 
 useEffect(()=>{
     const getAnimalData = async () => {
@@ -45,7 +45,6 @@ useEffect(()=>{
     return response;
     }
     getAnimalData();
-
 }, [])
 
 
@@ -100,7 +99,7 @@ useEffect(()=>{
             boxShadow: "2px 2px 2px grey",
             width: "20%",
             position: "absolute",
-            right: "400px",
+            right: "600px",
             top: "250px"
         }} onClick = {navigateHome}> Return Home</button>        
     </div>

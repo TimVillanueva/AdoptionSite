@@ -245,7 +245,6 @@ border-bottom: 4px green solid;
     width: 60px;
     color: black;
     margin: 10px;
-    /* border: 2px solid black; */
     height: 20px;
 }
 .login-help{
@@ -297,7 +296,7 @@ border-bottom: 4px green solid;
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(16vw, 1fr));
 }
-.search-card{
+.search-card,.detail-info, .details-slideshow, .detail-about, .detail-description{
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 10px;
@@ -306,4 +305,42 @@ border-bottom: 4px green solid;
 }
 .search-grid > .search-card{
     aspect-ratio: 1/1;
+}
+.details-container{
+    background-color: whitesmoke;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:0 auto;
+    margin-top: 10px;
+    align-items: center;
+    width: 70%;
+    box-shadow: 2px 2px 2px grey;
+    border-radius: 10px
+}
+.details-slideshow{
+    width: 560px;
+
+}
+.detail-image{
+    border-radius: 10px;
+    margin:0 auto;
+}
+.slick-prev:before,
+.slick-next:before {
+color: black!important;
+}
+.detail-info{
+width: 50%;
+text-align: center;
+}
+.detail-about{
+    padding: 5px;
+    width: 20%
+}
+.detail-description{
+    width: 80%
+}
+#children:hover + .children-hider{
+opacity: 100%;
 }
