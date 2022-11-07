@@ -18,8 +18,7 @@ import { DataContext } from './DataContext';
 function App() {
 const initialState = {
   initial: '',
-  city: '',
-  state: '',
+  zip: '',
   type:'',
   breed:'',
   age:'',

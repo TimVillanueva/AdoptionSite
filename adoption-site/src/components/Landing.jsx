@@ -70,13 +70,9 @@ if (TYPES.includes(input)) {
                         value={searchCriteria.initial}
                         onChange = {(e)=>setSearchCriteria({...searchCriteria, initial:e.target.value})}
                         />
-                    <input type="text" placeholder="City" id="city" 
-                        value={searchCriteria.city}
-                        onChange = {(e)=>setSearchCriteria({...searchCriteria, city: e.target.value})}
-                        />
-                    <input type="text" placeholder="State e.g. `TX` " id="state" 
-                        value={searchCriteria.state}
-                        onChange = {(e)=>setSearchCriteria({...searchCriteria, state: e.target.value})}
+                    <input type="text" placeholder="Zip Code" id="city" 
+                        value={searchCriteria.zip}
+                        onChange = {(e)=>setSearchCriteria({...searchCriteria, zip: e.target.value})}
                         />
                     <input  type="submit" value="go!" id="landing-search-button"/>
                 </form>
