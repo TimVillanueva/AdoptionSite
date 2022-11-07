@@ -303,6 +303,10 @@ border-bottom: 4px green solid;
     margin: 10px;
     box-shadow: 2px 2px 2px grey;
 }
+.search-card:hover{
+cursor: pointer;
+background-color: rgb(195, 192, 192)
+}
 .search-grid > .search-card{
     aspect-ratio: 1/1;
 }
@@ -343,4 +347,8 @@ text-align: center;
 }
 #children:hover + .children-hider{
 opacity: 100%;
+}
+.roundTwo, .roundThree, .roundFour{
+    visibility:hidden;
+    position: absolute;
 }

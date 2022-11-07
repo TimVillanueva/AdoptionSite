@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick'
 import { AiOutlineHeart } from 'react-icons/ai'
-import {FaCat, FaChild, FaDog} from 'react-icons/fa'
+
 
 function AnimalDetails(props) {
 
@@ -21,17 +21,19 @@ let attributes = [];
 
 
 useEffect(() => {
-    if(currentSearch=== []){
+
+    if(currentSearch.length>0){
     let selectedPet = currentSearch.find(
     (pet) => pet.id === parseInt(id)
     )
+    
     setPet(selectedPet)
 } else {
     setPet(featuredPet)
 }
 }, [currentSearch, id])
 
-if (pet != []){
+if (pet){
     for ( let i=0; i<pet.photos.length; i++) {
     photoArr.push(pet.photos[i].large)
     }
@@ -67,7 +69,7 @@ let settings = {
 // console.log(pet)
 
 
-    return pet ?(
+    return pet ? (
         <div className= "details-container">
             <div className="details-slideshow">
             <Slider {...settings}>
