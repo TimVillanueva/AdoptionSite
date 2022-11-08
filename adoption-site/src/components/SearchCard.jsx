@@ -14,7 +14,7 @@ if (props.pet.breeds.mixed === true && props.pet.breeds.secondary != null) {
 }
 let photoSRC = '';
 if (props.pet.photos.length>0){
-    photoSRC = props.pet.primary_photo_cropped.large;
+    photoSRC = props.pet.photos[0].large;
 } else {
     
 }

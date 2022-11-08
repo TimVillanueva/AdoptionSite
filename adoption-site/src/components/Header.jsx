@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { BsFillBookmarkHeartFill } from 'react-icons/bs'
 
+
 function Header(props) {
 
-     
+
     return props.logInStatus ? (
         <div className="header">
             <div className="header-home-container">
-                <Link to="/" className="header-home"><img id="logo" src={require('../Photos/Logo.png') }/></Link>
+                <Link to="/" className="header-home" ><img id="logo" src={require('../Photos/Logo.png') }/></Link>
             </div>
             <div className="header-other-container">
                 <Link to="/Saved" className="header-saved"><BsFillBookmarkHeartFill 

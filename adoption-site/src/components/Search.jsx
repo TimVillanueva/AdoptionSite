@@ -6,6 +6,7 @@ import {API_KEY, SECRET} from '../API_KEY';
 import SearchCard from './SearchCard';
 import {FaExclamation} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import Error from './Error';
 
 function Search(props) {
 
@@ -18,7 +19,7 @@ const {searchCriteria, setSearchCriteria} = useContext(DataContext)
 let location= searchCriteria.zip;
 location === '' ? location = "Anywhere" : location = `in ${searchCriteria.zip}`;
 
-// const [currentSearch, setCurrentSearch] = useState([]);
+
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
 
 useEffect(()=>{
@@ -29,6 +30,7 @@ useEffect(()=>{
             {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
         );
     token = token.data.access_token;
+    try{
     const response = await axios.get('https://api.petfinder.com/v2/animals/', {
         params: {
             type: searchCriteria.type,
@@ -40,12 +42,15 @@ useEffect(()=>{
         },
         headers: {'Authorization': `Bearer ${token}`}
     });
-    
     setCurrentSearch(response.data.animals)
     return response;
+    
+    }catch(error){
+       return (<Error/>)
     }
-    getAnimalData();
-}, [])
+} 
+getAnimalData();
+},[])
 
 
     return currentSearch.length>0 ? (

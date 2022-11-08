@@ -47,9 +47,10 @@ const getUsername = (input) =>{
 }
 
     return (
+    <DataContext.Provider value={{searchCriteria, setSearchCriteria, currentSearch, setCurrentSearch, featuredPet, setFeaturedPet}}>
       <div className="App">
-          <Header logInStatus= {logInStatus} username={username}/>
-      <DataContext.Provider value={{searchCriteria, setSearchCriteria, currentSearch, setCurrentSearch, featuredPet, setFeaturedPet}}>
+          <Header logInStatus= {logInStatus} username={username} initialState={initialState}/>
+      
         <main>
         <Routes>
           <Route path="/" element={<Landing initialState={initialState}/>} />
@@ -61,9 +62,10 @@ const getUsername = (input) =>{
           <Route path="/Search/:id" element = {<AnimalDetails/>}/>
         </Routes>
         </main>
-      </DataContext.Provider>
+      
           <Footer/>
       </div>
+    </DataContext.Provider>
     );
   }
   
