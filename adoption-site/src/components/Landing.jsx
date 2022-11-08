@@ -5,9 +5,6 @@ import {useContext, useState, useEffect} from 'react';
 import { DataContext } from '../DataContext'
 import {useNavigate} from 'react-router-dom'
 
-
-
-
 function Landing(props) {
 
 let navigate=useNavigate();
@@ -19,22 +16,29 @@ const SIZE = ['small', 'medium', 'large', 'xlarge' ]
 
 const {searchCriteria,setSearchCriteria} = useContext(DataContext)
 const temp = searchCriteria;
-const resetSearch =
-    temp.age= ''
-    temp.breed=''
-    temp.name= ''
-    temp.size=''
-    temp.type=''
+const resetSearch = {
+    age: '',
+    breed: '',
+    name: '',
+    size: '',
+    type:'',
+    initial: '',
+    zip:'',
+}
+
+const onLoad = () => {
+    setSearchCriteria(resetSearch)
+    console.log(searchCriteria)
+}
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchCriteria(resetSearch)
+    // setSearchCriteria(resetSearch)
     let inputArr = searchCriteria.initial.split(" ")
 
     for (let i=0; i<inputArr.length; i++){   
         parseSearch(inputArr[i])
     }
-
 console.log(searchCriteria)
 navigate(`Search`)
 }
@@ -53,15 +57,15 @@ if (TYPES.includes(input)) {
 } else {
     temp.breed = `${input}`;
     setSearchCriteria(temp)
-    // setSearchCriteria({...searchCriteria, breed: input})
 }
-console.log(searchCriteria)
 }
 
-
+// document.ready(function(){
+//     onLoad();
+// });
 
     return (
-        <div className="landing">
+        <div className="landing" onLoad={onLoad}>
             <div className="landing-featured">
                 <Featured />
             </div>
