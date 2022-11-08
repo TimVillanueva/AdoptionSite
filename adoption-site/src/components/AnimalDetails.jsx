@@ -1,7 +1,7 @@
 import React from 'react';
 import {useContext, useState, useEffect} from 'react';
 import {DataContext} from '../DataContext'
-import {useParams } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick'
@@ -13,16 +13,19 @@ function AnimalDetails(props) {
 let {id} = useParams()
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
 const {featuredPet, setFeaturedPet} = useContext(DataContext)
+const {saved, setSaved} = useContext(DataContext)
 const [pet, setPet] = useState('')
 let photoArr=[];
 let breed = ""; 
 let attributes = [];
 
-
+const saver = () => {
+   setSaved([...saved, pet ])
+}
 
 useEffect(() => {
 
-    if(currentSearch.length>0){
+    if(featuredPet===null){
     let selectedPet = currentSearch.find(
     (pet) => pet.id === parseInt(id)
     )
@@ -33,7 +36,7 @@ useEffect(() => {
 }
 }, [currentSearch, id])
 
-if (pet){
+if ( pet.photos != undefined){
     for ( let i=0; i<pet.photos.length; i++) {
     photoArr.push(pet.photos[i].large)
     }
@@ -85,6 +88,7 @@ let settings = {
                 <h2>{pet.contact.address.city}, {pet.contact.address.state}</h2>
                 <h3>{pet.age} <AiOutlineHeart style={{fontSize:"12px"}}/> {breed} <AiOutlineHeart style={{fontSize:"12px"}}/> {pet.size}</h3>
             </div>
+            <AiOutlineHeart onClick={saver} id="save-heart"  style={{fontSize:"40px"}}/> Favorite {pet.name}
             <div style={{display:"flex", width:"100%"}}>
             <div className="detail-about">
                 <h2>About {pet.name}</h2>

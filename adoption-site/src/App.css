@@ -352,3 +352,6 @@ opacity: 100%;
     visibility:hidden;
     position: absolute;
 }
+#save-heart:hover{
+ color: red!important;
+}

@@ -28,7 +28,7 @@ const initialState = {
 const [searchCriteria, setSearchCriteria] = useState(initialState)
 const [currentSearch, setCurrentSearch] = useState([])
 const [featuredPet, setFeaturedPet] = useState([])
-
+const [saved, setSaved] = useState([]);
 const [logInStatus, setLogInStatus] = useState(false);
 const getLogInStatus = () => {
   if (logInStatus)
@@ -47,7 +47,11 @@ const getUsername = (input) =>{
 }
 
     return (
-    <DataContext.Provider value={{searchCriteria, setSearchCriteria, currentSearch, setCurrentSearch, featuredPet, setFeaturedPet}}>
+    <DataContext.Provider value={{searchCriteria, setSearchCriteria, 
+    currentSearch, setCurrentSearch, 
+    featuredPet, setFeaturedPet,
+    saved, setSaved
+    }}>
       <div className="App">
           <Header logInStatus= {logInStatus} username={username} initialState={initialState}/>
       
@@ -57,9 +61,10 @@ const getUsername = (input) =>{
           <Route path='/Saved' element={<Saved/>}/>
           <Route path="/Login" element={<Login getLogInStatus={getLogInStatus} username={username} getUsername= {getUsername}/>}/>
           <Route path="/LogOut" element={<LogOut getLogInStatus={getLogInStatus}/>}/>
-          <Route path = "/:id" element={<AnimalDetails/>}/>
+          <Route path = "Search/:id" element={<AnimalDetails/>}/>
           <Route path="/Search" element={<Search/>}/>
-          <Route path="/Search/:id" element = {<AnimalDetails/>}/>
+          <Route path="/:id" element = {<AnimalDetails/>}/>
+          <Route path="/Saved/:id" element={<AnimalDetails/>}/>
         </Routes>
         </main>
       

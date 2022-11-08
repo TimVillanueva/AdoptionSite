@@ -15,6 +15,7 @@ const AGE = ['baby', 'young', 'adult', 'senior']
 const SIZE = ['small', 'medium', 'large', 'xlarge' ]
 
 const {searchCriteria,setSearchCriteria} = useContext(DataContext)
+const {featuredPet, setFeaturedPet}= useContext(DataContext);
 const temp = searchCriteria;
 const resetSearch = {
     age: '',
@@ -28,7 +29,7 @@ const resetSearch = {
 
 const onLoad = () => {
     setSearchCriteria(resetSearch)
-    console.log(searchCriteria)
+    setFeaturedPet(null)
 }
 
 const handleSubmit = (e) => {
@@ -39,7 +40,6 @@ const handleSubmit = (e) => {
     for (let i=0; i<inputArr.length; i++){   
         parseSearch(inputArr[i])
     }
-console.log(searchCriteria)
 navigate(`Search`)
 }
 

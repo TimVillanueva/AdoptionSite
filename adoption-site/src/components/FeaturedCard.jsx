@@ -13,7 +13,7 @@ let navigate = useNavigate();
 
 const showDetails = (id) => {
     setFeaturedPet(props.pet)
-    navigate(`Search/${id}`);
+    navigate(`${id}`);
 }
 
     if (props.pet.photos.length>0)
