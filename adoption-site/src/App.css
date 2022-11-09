@@ -283,11 +283,14 @@ border-bottom: 4px green solid;
 }
 .search-advanced{
     width: 20%;
-    height: 40vh;
+    height: 50vh;
     background-color: whitesmoke;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
+}
+select{
+    border-radius: 10px;
 }
 .search-grid{
     width:80%;
@@ -327,11 +330,6 @@ background-color: rgb(195, 192, 192)
 .filter-button:active{
     transform:translateX(2px)
 }
-
-
-
-
-
 .details-container{
     background-color: whitesmoke;
     display:flex;

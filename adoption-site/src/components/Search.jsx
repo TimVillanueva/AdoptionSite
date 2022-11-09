@@ -15,12 +15,10 @@ let navigate = useNavigate();
 const navigateHome = () => {
     navigate('/')
 }
-const{filters, setFilters} = useContext(DataContext)
+const {filters, setFilters} = useContext(DataContext)
 const {searchCriteria, setSearchCriteria} = useContext(DataContext)
-let location= searchCriteria.zip;
-location === '' ? location = "Anywhere" : location = `in ${searchCriteria.zip}`;
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
-const [counter, setCounter] = useState(0)
+const [counter, setCounter] = useState(0) //dummy to refresh API call
 
 useEffect(()=>{
     const getAnimalData = async () => {
@@ -80,6 +78,11 @@ const removeFilter = (index) => {
     setCounter(counter=>counter+1);
 }
 
+const handleSubmit=(e)=>{
+e.preventDefault();
+}
+
+
     return currentSearch.length>0 ? (
         <div className="search-container">
             <div className="search-header">
@@ -91,11 +94,38 @@ const removeFilter = (index) => {
             <div className="search-main">
                 <div className="search-advanced">
                     <h3>Advanced Search</h3>
-                    <form className = "search-advanced-form">
-                        <h4 style={{margin: "0"}}>Pet: </h4>
+                    <form className = "search-advanced-form" onSubmit={handleSubmit}>
+                        <h4 style={{marginBottom: "10px"}}>Pet:</h4>
                         <select>
-                            <option value = "initial">{searchCriteria.type}</option>
+                            <option value="">None</option>
+                            <option value="dog">Dogs</option>
+                            <option value="cat">Cats</option>
+                            <option value="small & furry">Pocket Pets</option>
+                            <option value="horse">Horses</option>
+                            <option value="bird">Bird</option>
+                            <option value="scales, fins, & other">Fish and Scaled</option>
+                            <option value="barnyard">Barnyard</option>
                         </select>
+                        <h4 style={{marginBottom: "10px"}}>Size</h4>
+                        <select>
+                            <option value="">None</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="xlarge">X-Large</option>
+                        </select>
+                        <h4 style={{marginBottom: "10px"}}>Age</h4>
+                        <select>
+                            <option value="">None</option>
+                            <option value="baby">Baby</option>
+                            <option value="young">Young</option>
+                            <option value="adult">Adult</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                        <h4 style={{marginBottom: "10px"}}>Zip Code</h4>
+                        <input type="text" value ={searchCriteria.zip} onChange={(e)=>setSearchCriteria({...searchCriteria, zip: e.target.value})}></input>
+                        <br/>
+                        <input type="submit" value="Update Search"/>
                     </form>
                 </div>
                 <div className="search-grid">

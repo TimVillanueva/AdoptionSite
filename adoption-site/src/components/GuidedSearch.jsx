@@ -11,6 +11,7 @@ import {useNavigate} from 'react-router-dom'
 function GuidedSearch(props) {
 
 const {searchCriteria, setSearchCriteria} = useContext(DataContext)
+const {filters, setFilters} = useContext(DataContext)
 let temporary = searchCriteria;
 let navigate= useNavigate()
 
@@ -52,6 +53,11 @@ if (choice === "cats") {
                 document.querySelector(".roundOne").style.visibility="visible"
                 document.querySelector(".roundFour").style.visibility="hidden"
         } else {
+        setFilters([...filters,
+                searchCriteria.type,
+                searchCriteria.age,
+                searchCriteria.size,
+                searchCriteria.breed, ])
         navigate('Search')
 }}
 }
