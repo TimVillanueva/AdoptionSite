@@ -27,9 +27,13 @@ const initialState = {
 }
 const [searchCriteria, setSearchCriteria] = useState(initialState)
 const [currentSearch, setCurrentSearch] = useState([])
-const [featuredPet, setFeaturedPet] = useState([])
+const [featuredPet, setFeaturedPet] = useState(null)
 const [saved, setSaved] = useState([]);
 const [logInStatus, setLogInStatus] = useState(false);
+const [username, setUsername] = useState('');
+const [filters, setFilters] = useState([])
+
+
 const getLogInStatus = () => {
   if (logInStatus)
   { 
@@ -40,21 +44,19 @@ const getLogInStatus = () => {
   }
 }
 
-const [username, setUsername] = useState('');
 const getUsername = (input) =>{
   setUsername(input)
-  console.log(username)
 }
 
     return (
     <DataContext.Provider value={{searchCriteria, setSearchCriteria, 
-    currentSearch, setCurrentSearch, 
-    featuredPet, setFeaturedPet,
-    saved, setSaved
-    }}>
+                                  currentSearch, setCurrentSearch, 
+                                  featuredPet, setFeaturedPet,
+                                  saved, setSaved,
+                                  filters, setFilters
+                                }}>
       <div className="App">
           <Header logInStatus= {logInStatus} username={username} initialState={initialState}/>
-      
         <main>
         <Routes>
           <Route path="/" element={<Landing initialState={initialState}/>} />
@@ -77,20 +79,6 @@ const getUsername = (input) =>{
   export default App;
   
   
-  //client.animalData.types() -- gets animal types
-  //client.animalData.breeds('dog') -- get animal breeds by type
-  //client.animal.search() -- array of 200 animals
-  //client.animal.search({ -- more specific search results 
-  //   type:"Dog",
-  //   breed:"Labrador-Retriever",
-  //   page:1,
-  //   limit:100,
-  // })
-  //client.animal.show(12345) -- animal by ID
-  //client.organization.search({location: "Minneapolis, MN"}) -- organizations by area
-
-
-  {/* <img src={require('../Photos/stockCat.jpeg')}/> */}
 
   // const [test, setTest] = useState([]);
 

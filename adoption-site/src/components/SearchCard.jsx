@@ -20,6 +20,7 @@ if (props.pet.photos.length>0){
 }
 
 const handleClick = (id) => {
+    
 navigate(`${id}`)
 }
 

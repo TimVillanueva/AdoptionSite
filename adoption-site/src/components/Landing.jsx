@@ -10,13 +10,19 @@ function Landing(props) {
 let navigate=useNavigate();
 
 
-const TYPES = ['dog','dogs', 'cat','cats', 'rabbit','rabbits', 'small & furry', 'horse','horses', 'bird','birds', 'scales, fins, &other', 'barnyard']
+const TYPES = ['dog', 'cat', 'rabbit', 'small & furry', 'horse', 'bird', 'scales, fins, & other', 'barnyard']
 const AGE = ['baby', 'young', 'adult', 'senior']
 const SIZE = ['small', 'medium', 'large', 'xlarge' ]
+const dogAlt = ['dogs','puppy', 'puppies']
+const catAlt= ['cats','kitten', 'kittens'
+]
 
 const {searchCriteria,setSearchCriteria} = useContext(DataContext)
 const {featuredPet, setFeaturedPet}= useContext(DataContext);
+const {filters, setFilters} = useContext(DataContext)
 const temp = searchCriteria;
+
+
 const resetSearch = {
     age: '',
     breed: '',
@@ -30,24 +36,43 @@ const resetSearch = {
 const onLoad = () => {
     setSearchCriteria(resetSearch)
     setFeaturedPet(null)
+    setFilters([])
 }
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    // setSearchCriteria(resetSearch)
+    if (searchCriteria.zip === ''){
+        alert('Please Enter A Zip Code!')
+        navigate(`/`)
+    } else {
     let inputArr = searchCriteria.initial.split(" ")
 
     for (let i=0; i<inputArr.length; i++){   
         parseSearch(inputArr[i])
     }
+    setFilters([...filters,
+        searchCriteria.type,
+        searchCriteria.age,
+        searchCriteria.size,
+        searchCriteria.breed, ])
 navigate(`Search`)
+    }
 }
 
 const parseSearch = (input) => {
 
-if (TYPES.includes(input)) {
+if (TYPES.includes(input) || dogAlt.includes(input)|| catAlt.includes(input)) {
+    if (dogAlt.includes(input)){
+        temp.type='dog';
+
+    setSearchCriteria(temp)
+    } else if (catAlt.includes(input)){
+        temp.type='cat';
+        setSearchCriteria(temp)
+    }else{
     temp.type=input;
     setSearchCriteria(temp)
+    }
 } else if (AGE.includes(input)) {
     temp.age=input
     setSearchCriteria(temp)
@@ -57,14 +82,9 @@ if (TYPES.includes(input)) {
 } else {
     temp.breed = `${input}`;
     setSearchCriteria(temp)
-}
-}
+}}
 
-// document.ready(function(){
-//     onLoad();
-// });
-
-    return (
+return (
         <div className="landing" onLoad={onLoad}>
             <div className="landing-featured">
                 <Featured />
@@ -91,5 +111,3 @@ if (TYPES.includes(input)) {
 }
 
 export default Landing;
-
-// onChange ={(e)=>props.getUsername(e.target.value)}

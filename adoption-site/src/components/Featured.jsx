@@ -3,7 +3,7 @@ import {API_KEY, SECRET} from '../API_KEY';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import FeaturedCard from './FeaturedCard';
-import {dummyData} from '../DummyData'
+
 
 function Featured(props) {
 
@@ -34,7 +34,6 @@ useEffect(()=>{
 
 
     return animalData.length >0 ? (
-        // return(
         <div>
             <div className='featured-grid'>
         { 
@@ -47,7 +46,6 @@ useEffect(()=>{
         }
             </div>
         </div>
-    // ) 
     ) : <h1>Loading New Best Friend...</h1>
 
 

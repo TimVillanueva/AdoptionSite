@@ -79,9 +79,9 @@ input[type=text]{
 #search, #city{
 margin-right:5px;
 }
-
-
-
+#search::placeholder, #city::placeholder{
+    font-size: 20px;
+}
 input[type="text"]:hover{
     border-bottom: 4px green solid;
 }
@@ -120,6 +120,8 @@ border-bottom: 4px green solid;
     background-color: rgb(227, 223, 223)
 }
 .featured-card-header{
+    overflow: hidden;
+    white-space: nowrap;
     position: relative;
     top:-13px;
     border-radius:8px 8px 0 0;
@@ -310,6 +312,26 @@ background-color: rgb(195, 192, 192)
 .search-grid > .search-card{
     aspect-ratio: 1/1;
 }
+.filter-button{
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 2px 2px 2px grey;
+    padding-bottom: 10px;
+    font-Size: 14px;
+}
+.filter-button:hover{
+    background-color: rgb(195, 191, 191);
+}
+.filter-button:active{
+    transform:translateX(2px)
+}
+
+
+
+
+
 .details-container{
     background-color: whitesmoke;
     display:flex;

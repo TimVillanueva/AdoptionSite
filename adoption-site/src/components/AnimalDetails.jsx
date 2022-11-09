@@ -20,23 +20,35 @@ let breed = "";
 let attributes = [];
 
 const saver = () => {
-   setSaved([...saved, pet ])
+    if (saved.includes(pet))
+    {
+    } else {
+        document.querySelector("#saved-text").style.visibility="visible"
+        document.querySelector("#favorite-text").style.visibility="hidden"
+        setSaved([...saved, pet ])
+        
+    }
 }
 
-useEffect(() => {
 
-    if(featuredPet===null){
-    let selectedPet = currentSearch.find(
-    (pet) => pet.id === parseInt(id)
-    )
-    
-    setPet(selectedPet)
-} else {
-    setPet(featuredPet)
-}
-}, [currentSearch, id])
+useEffect(()=> {
+    if (featuredPet != null && featuredPet.id === parseInt(id)) {
+        setPet(featuredPet)
+    }else if (saved.length > 0){
+        let selectedPet = saved.find(
+            (pet) => pet.id === parseInt(id))
+        setPet(selectedPet)
+    } else {
+        let selectedPet = currentSearch.find(
+            (pet) => pet.id === parseInt(id))
+            setPet(selectedPet)
+    }
+},[currentSearch,id])
 
-if ( pet.photos != undefined){
+
+
+
+if ( pet ){
     for ( let i=0; i<pet.photos.length; i++) {
     photoArr.push(pet.photos[i].large)
     }
@@ -57,9 +69,7 @@ if ( pet.photos != undefined){
     if(pet.attributes.special_needs === true){
         attributes.push("Yes! See Description")
     } else {attributes.push("None!")}
-
 }
-
 
 let settings = {
     dots:true,
@@ -69,7 +79,6 @@ let settings = {
 
 }
 
-// console.log(pet)
 
 
     return pet ? (
@@ -81,14 +90,19 @@ let settings = {
                 )}
 
             </Slider>
-            
+
             </div>
             <div className="detail-info">
                 <h1>{pet.name}, {pet.gender}</h1>
                 <h2>{pet.contact.address.city}, {pet.contact.address.state}</h2>
                 <h3>{pet.age} <AiOutlineHeart style={{fontSize:"12px"}}/> {breed} <AiOutlineHeart style={{fontSize:"12px"}}/> {pet.size}</h3>
             </div>
-            <AiOutlineHeart onClick={saver} id="save-heart"  style={{fontSize:"40px"}}/> Favorite {pet.name}
+            <AiOutlineHeart onClick={saver} id="save-heart"  style={{fontSize:"40px"}}/> 
+            <h4 style={{margin:"0"}} id="favorite-text">Favorite {pet.name}</h4>
+            <h4 style={{margin:"0", visibility:"hidden"}}id="saved-text">Saved!</h4>
+
+
+
             <div style={{display:"flex", width:"100%"}}>
             <div className="detail-about">
                 <h2>About {pet.name}</h2>
@@ -109,5 +123,4 @@ let settings = {
         </div>
     ): <h1>...Loading Friend</h1>
 }
-
 export default AnimalDetails;

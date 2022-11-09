@@ -46,11 +46,16 @@ if (choice === "cats") {
         document.querySelector(".roundThree").style.visibility="hidden"
         document.querySelector(".roundFour").style.visibility="visible"
 }else if (choice === "submit") {
+        if (searchCriteria.zip === ''){
+                alert('Please Enter A Zip Code!')
+                navigate(`/`)
+                document.querySelector(".roundOne").style.visibility="visible"
+                document.querySelector(".roundFour").style.visibility="hidden"
+        } else {
         navigate('Search')
+}}
 }
-console.log(searchCriteria)
-}
-// onChange = {(e)=>setSearchCriteria({ zip:e.target.value})}
+
 
 return (
         <div className="guided-search">

@@ -5,6 +5,7 @@ import axios from 'axios'
 import {API_KEY, SECRET} from '../API_KEY';
 import SearchCard from './SearchCard';
 import {FaExclamation} from 'react-icons/fa'
+import { GiCancel} from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 
@@ -14,13 +15,12 @@ let navigate = useNavigate();
 const navigateHome = () => {
     navigate('/')
 }
-
+const{filters, setFilters} = useContext(DataContext)
 const {searchCriteria, setSearchCriteria} = useContext(DataContext)
 let location= searchCriteria.zip;
 location === '' ? location = "Anywhere" : location = `in ${searchCriteria.zip}`;
-
-
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
+const [counter, setCounter] = useState(0)
 
 useEffect(()=>{
     const getAnimalData = async () => {
@@ -46,22 +46,47 @@ useEffect(()=>{
     return response;
     
     }catch(error){
-       return (<Error/>)
+    return (<Error/>)
     }
 } 
+    const trimFilters = () => {
+        let tempArr=[];
+        for (let i=0; i<filters.length; i++){
+            if (filters[i] != ''){
+                tempArr.push(filters[i])
+            }
+        }
+        setFilters(tempArr)
+    }
+trimFilters()
 getAnimalData();
-},[])
+},[counter])
 
+const removeFilter = (index) => {
+    let tempArr = filters;
+    let temp = searchCriteria;
+    for (const item in searchCriteria)
+    {
+
+        if (searchCriteria[item] === filters[index])
+        {
+            temp[item] = ''
+            setSearchCriteria(temp)
+        }
+    }
+
+    tempArr.splice(index, 1);
+    setFilters(tempArr)
+    setCounter(counter=>counter+1);
+}
 
     return currentSearch.length>0 ? (
         <div className="search-container">
             <div className="search-header">
-                <h1 style={{paddingLeft: "10px"}}>Current Filters:</h1>
-                <button>Zip Code</button>
-                <button>Age</button>
-                <button>Type</button>
-                <button>Size</button>
-                <button>Breed</button>
+                <h1 style={{paddingLeft: "10px"}}>Current Filters:</h1> 
+                {filters.map((filter, index)=>(
+                    <button className = "filter-button" key={index} onClick={()=>removeFilter(index)}>{filter}<GiCancel style={{ color: "red",fontSize: "20px", position:"relative", top: "6px", left: "4px"}}/></button>
+                ))}
             </div>
             <div className="search-main">
                 <div className="search-advanced">
@@ -85,7 +110,12 @@ getAnimalData();
                 </div>
             </div>
         </div>
-    ):  <div style={{
+    ):  
+    
+    
+    //Loading screen
+    
+    <div style={{
         display:"flex",
         justifyContent: "center",
         alignItems: "center",
