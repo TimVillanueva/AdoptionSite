@@ -17,8 +17,7 @@ const SIZE = ['small', 'medium', 'large', 'xlarge' ]
 
 //alternate API inputs to convert to allowed inputs
 const dogAlt = ['dogs','puppy', 'puppies']
-const catAlt= ['cats','kitten', 'kittens'
-]
+const catAlt= ['cats','kitten', 'kittens']
 
 const {searchCriteria,setSearchCriteria} = useContext(DataContext)
 const {featuredPet, setFeaturedPet}= useContext(DataContext);
@@ -29,7 +28,7 @@ const temp = searchCriteria;
 const resetSearch = {
     age: '',
     breed: '',
-    name: '',
+    page: 1,
     size: '',
     type:'',
     initial: '',
@@ -44,8 +43,8 @@ const onLoad = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchCriteria.zip === ''){ //make sure they enter a zip code
-        alert('Please Enter A Zip Code!')
+    if (searchCriteria.zip === ''|| searchCriteria.zip.split('').length < 5){ //make sure they enter a zip code
+        alert('Please Enter A 5-Digit Zip Code!')
         navigate(`/`)
     } else {
     let inputArr = searchCriteria.initial.split(" ")
@@ -57,6 +56,9 @@ const handleSubmit = (e) => {
         searchCriteria.age,
         searchCriteria.size,
         searchCriteria.breed, ])
+
+console.log(searchCriteria)
+
 navigate(`Search`)
     }
 }
@@ -84,7 +86,8 @@ if (TYPES.includes(input) || dogAlt.includes(input)|| catAlt.includes(input)) {
 } else {
     temp.breed = `${input}`;
     setSearchCriteria(temp)
-}}
+}
+}
 
 return (
         <div className="landing" onLoad={onLoad}>

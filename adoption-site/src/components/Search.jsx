@@ -6,6 +6,7 @@ import {API_KEY, SECRET} from '../API_KEY';
 import SearchCard from './SearchCard';
 import {FaExclamation} from 'react-icons/fa'
 import { GiCancel} from 'react-icons/gi'
+import { AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 
@@ -20,7 +21,7 @@ const {filters, setFilters} = useContext(DataContext)
 const {searchCriteria, setSearchCriteria} = useContext(DataContext)
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
 const [counter, setCounter] = useState(0) //dummy to refresh API call
-
+const [maxPage, setMaxPage] = useState(0)
 
 //main API call
 //POST API Key + Secret, get token, use token to get data
@@ -39,12 +40,15 @@ useEffect(()=>{
             age: searchCriteria.age,
             breed: searchCriteria.breed,
             size: searchCriteria.size,
-            location: searchCriteria.zip
+            location: searchCriteria.zip,
+            page: searchCriteria.page
 
         },
         headers: {'Authorization': `Bearer ${token}`}
     });
+    
     setCurrentSearch(response.data.animals)
+    setMaxPage(response.data.pagination.total_count)
     return response;
     
     }catch(error){
@@ -87,17 +91,28 @@ const removeFilter = (index) => {
 //reset filters to empty, fill with selections from user
 const handleSubmit=(e)=>{
 e.preventDefault();
-setFilters(props.initialState)
+setFilters([])
+setSearchCriteria({...searchCriteria, breed: ''})
 setFilters([
     searchCriteria.type,
     searchCriteria.age ,
-    searchCriteria.size,
-    searchCriteria.breed, ])
+    searchCriteria.size,])
 setCounter(counter=>counter+1)
-
 }
-
-
+ const increasePage = () => {
+    let nextPage = searchCriteria.page + 1;
+    if(nextPage === maxPage) 
+    {nextPage=maxPage}
+    setSearchCriteria({...searchCriteria, page: nextPage})
+    setCounter(counter+1)
+ }
+const decreasePage = () =>{
+    let lastPage = searchCriteria.page - 1;
+    if(lastPage === 0) 
+    {lastPage=1}
+    setSearchCriteria({...searchCriteria, page: lastPage})
+    setCounter(counter+1)
+}
     return currentSearch.length>0 ? (
         // Current Filters
         <div className="search-container"> 
@@ -140,13 +155,19 @@ setCounter(counter=>counter+1)
                             <option value="senior">Senior</option>
                         </select>
                         <h4 style={{marginBottom: "10px"}}>Zip Code</h4>
-                        <input type="text" value ={searchCriteria.zip} onChange={(e)=>setSearchCriteria({...searchCriteria, zip: e.target.value})}></input>
+                        <input type="text" value ={searchCriteria.zip} style={{padding: "0"}} onChange={(e)=>setSearchCriteria({...searchCriteria, zip: e.target.value})}></input>
                         <br/>
-                        <input type="submit" value="Update Search"/>
+                        <input type="submit" value="Update Search" style={{margin: "10px"}}/>
                     </form>
+                    <div><h4>page:{searchCriteria.page} of {maxPage}</h4>
+                    <button onClick={decreasePage}><h5 style={{ margin:"0"}}></h5><AiOutlineArrowLeft/></button>
+                    <button onClick={increasePage}><h5 style={{ margin:"0"}}></h5><AiOutlineArrowRight/></button>
+                    </div>
                 </div>
                 {/* Main search grid */}
+                
                 <div className="search-grid">
+                    
                     {
                         currentSearch.map((card)=>(
                             <SearchCard 

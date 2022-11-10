@@ -11,6 +11,12 @@ import { Routes, Route } from 'react-router-dom'
 import {useState} from 'react'
 import { DataContext } from './DataContext';
 
+// IMPROVEMENTS!
+// --PAGINATION
+// --CATCH ERRORS / ZERO RESULTS
+
+
+
 
 function App() {
 const initialState = {
@@ -20,7 +26,7 @@ const initialState = {
   breed:'',
   age:'',
   size:'',
-  name:'',
+  page:"1",
 }
 const [searchCriteria, setSearchCriteria] = useState(initialState)
 const [currentSearch, setCurrentSearch] = useState([])
