@@ -11,7 +11,7 @@ function Featured(props) {
 //state for storing API call
 const [animalData, setAnimalData] = useState([]);
 
-
+//API call - random pets 
 useEffect(()=>{
     const getAnimalData = async () => {
         let token = await axios.post(

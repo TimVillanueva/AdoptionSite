@@ -6,7 +6,7 @@ import { BsFillBookmarkHeartFill } from 'react-icons/bs'
 function Header(props) {
 
 //if logged in, display name + log out, else display log in button
-    return props.logInStatus ? (
+    return props.logInStatus === true ? (
         <div className="header">
             <div className="header-home-container">
                 <Link to="/" className="header-home" ><img id="logo" src={require('../Photos/Logo.png') }/></Link>
