@@ -73,6 +73,7 @@ getAnimalData();
 const removeFilter = (index) => {
     let tempArr = filters;
     let temp = searchCriteria;
+    
     for (const item in searchCriteria)
     {
 
@@ -81,9 +82,11 @@ const removeFilter = (index) => {
             temp[item] = ''
             setSearchCriteria(temp)
         }
+        
     }
 
     tempArr.splice(index, 1);
+    setSearchCriteria({...searchCriteria,  page:1})
     setFilters(tempArr)
     setCounter(counter=>counter+1);
 }
@@ -92,7 +95,7 @@ const removeFilter = (index) => {
 const handleSubmit=(e)=>{
 e.preventDefault();
 setFilters([])
-setSearchCriteria({...searchCriteria, breed: ''})
+setSearchCriteria({...searchCriteria, breed: '', page:1})
 setFilters([
     searchCriteria.type,
     searchCriteria.age ,
@@ -113,6 +116,8 @@ const decreasePage = () =>{
     setSearchCriteria({...searchCriteria, page: lastPage})
     setCounter(counter+1)
 }
+
+console.log(searchCriteria)
     return currentSearch.length>0 ? (
         // Current Filters
         <div className="search-container"> 

@@ -12,7 +12,6 @@ import {useState} from 'react'
 import { DataContext } from './DataContext';
 
 // IMPROVEMENTS!
-// --PAGINATION
 // --CATCH ERRORS / ZERO RESULTS
 
 

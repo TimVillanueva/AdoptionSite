@@ -56,9 +56,6 @@ const handleSubmit = (e) => {
         searchCriteria.age,
         searchCriteria.size,
         searchCriteria.breed, ])
-
-console.log(searchCriteria)
-
 navigate(`Search`)
     }
 }
