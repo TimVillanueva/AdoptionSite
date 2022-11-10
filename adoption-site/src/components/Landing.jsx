@@ -5,14 +5,17 @@ import {useContext, useState, useEffect} from 'react';
 import { DataContext } from '../DataContext'
 import {useNavigate} from 'react-router-dom'
 
+//primary home page
 function Landing(props) {
 
 let navigate=useNavigate();
 
-
+//allowed API inputs
 const TYPES = ['dog', 'cat', 'rabbit', 'small & furry', 'horse', 'bird', 'scales, fins, & other', 'barnyard']
 const AGE = ['baby', 'young', 'adult', 'senior']
 const SIZE = ['small', 'medium', 'large', 'xlarge' ]
+
+//alternate API inputs to convert to allowed inputs
 const dogAlt = ['dogs','puppy', 'puppies']
 const catAlt= ['cats','kitten', 'kittens'
 ]
@@ -41,14 +44,13 @@ const onLoad = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchCriteria.zip === ''){
+    if (searchCriteria.zip === ''){ //make sure they enter a zip code
         alert('Please Enter A Zip Code!')
         navigate(`/`)
     } else {
     let inputArr = searchCriteria.initial.split(" ")
-
     for (let i=0; i<inputArr.length; i++){   
-        parseSearch(inputArr[i])
+        parseSearch(inputArr[i]) //sort input into allowed API items, set search criteria, navigate to search
     }
     setFilters([...filters,
         searchCriteria.type,

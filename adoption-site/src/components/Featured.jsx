@@ -8,6 +8,7 @@ import FeaturedCard from './FeaturedCard';
 
 function Featured(props) {
 
+//state for storing API call
 const [animalData, setAnimalData] = useState([]);
 
 

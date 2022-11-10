@@ -15,6 +15,7 @@ const {filters, setFilters} = useContext(DataContext)
 let temporary = searchCriteria;
 let navigate= useNavigate()
 
+//work through quiz based on selection
 const handleChoice = (choice) => {
 if (choice === "cats") { 
         temporary.type="cat";
@@ -53,6 +54,7 @@ if (choice === "cats") {
                 document.querySelector(".roundOne").style.visibility="visible"
                 document.querySelector(".roundFour").style.visibility="hidden"
         } else {
+        //if quiz was successfully completed, set searchCriteria and navigate to the main search
         setFilters([...filters,
                 searchCriteria.type,
                 searchCriteria.age,

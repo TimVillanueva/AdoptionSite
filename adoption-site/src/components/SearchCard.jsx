@@ -6,6 +6,8 @@ function SearchCard(props) {
 
 
 let navigate = useNavigate();
+
+//find breeds if mixed
 let breed = ""; 
 if (props.pet.breeds.mixed === true && props.pet.breeds.secondary != null) {
     breed = `${props.pet.breeds.primary} / ${props.pet.breeds.secondary} `
@@ -18,9 +20,8 @@ if (props.pet.photos.length>0){
 } else {
     
 }
-
+//navigate to animal details onclick
 const handleClick = (id) => {
-    
 navigate(`${id}`)
 }
 

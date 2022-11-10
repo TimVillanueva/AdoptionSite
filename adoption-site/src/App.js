@@ -1,7 +1,4 @@
 import './App.css';
-import react from 'react';
-import axios from 'axios'
-import {API_KEY, SECRET} from './API_KEY';
 import Header from './components/Header'
 import Landing from './components/Landing'
 import Footer from './components/Footer'
@@ -11,7 +8,7 @@ import LogOut from './components/LogOut'
 import Search from './components/Search'
 import AnimalDetails from './components/AnimalDetails';
 import { Routes, Route } from 'react-router-dom'
-import {useState, useEffect, useContext} from 'react'
+import {useState} from 'react'
 import { DataContext } from './DataContext';
 
 
@@ -49,6 +46,7 @@ const getUsername = (input) =>{
 }
 
     return (
+    //list of all items sent through useContext
     <DataContext.Provider value={{searchCriteria, setSearchCriteria, 
                                   currentSearch, setCurrentSearch, 
                                   featuredPet, setFeaturedPet,
@@ -77,29 +75,3 @@ const getUsername = (input) =>{
   }
   
   export default App;
-  
-  
-
-  // const [test, setTest] = useState([]);
-
-  // useEffect(()=>{
-  //   const getAnimalData = async () => {
-  //       let token = await axios.post(
-  //           'https://api.petfinder.com/v2/oauth2/token',
-  //           `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${SECRET}`,
-  //           {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-  //       );
-  //   token = token.data.access_token;
-  //   const response = await axios.get('https://api.petfinder.com/v2/animals/', {
-  //       params: {
-  //           breed: "pug,samoyed"
-  //       },
-  //       headers: {'Authorization': `Bearer ${token}`}
-  //   });
-  //   console.log(response)
-  //   // setTest(response.data.animals)
-  //   return response;
-  //   }
-  //   getAnimalData();
-  // }, [])
-

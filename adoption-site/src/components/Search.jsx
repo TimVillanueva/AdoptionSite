@@ -9,7 +9,7 @@ import { GiCancel} from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 
-
+//main search functionality
 function Search(props) {
 
 let navigate = useNavigate();
@@ -21,6 +21,9 @@ const {searchCriteria, setSearchCriteria} = useContext(DataContext)
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
 const [counter, setCounter] = useState(0) //dummy to refresh API call
 
+
+//main API call
+//POST API Key + Secret, get token, use token to get data
 useEffect(()=>{
     const getAnimalData = async () => {
         let token = await axios.post(
@@ -48,6 +51,7 @@ useEffect(()=>{
     return (<Error/>)
     }
 } 
+//figure out which filters are used, store in array to display
 const trimFilters = () => {
         let tempArr=[];
         for (let i=0; i<filters.length; i++){
@@ -61,6 +65,7 @@ trimFilters()
 getAnimalData();
 },[counter])
 
+//use index of filter, splice, set filters to new shorter array
 const removeFilter = (index) => {
     let tempArr = filters;
     let temp = searchCriteria;
@@ -78,7 +83,8 @@ const removeFilter = (index) => {
     setFilters(tempArr)
     setCounter(counter=>counter+1);
 }
-
+//update filters
+//reset filters to empty, fill with selections from user
 const handleSubmit=(e)=>{
 e.preventDefault();
 setFilters(props.initialState)
@@ -88,7 +94,7 @@ setFilters([
     searchCriteria.size,
     searchCriteria.breed, ])
 setCounter(counter=>counter+1)
-console.log(filters)
+
 }
 
 

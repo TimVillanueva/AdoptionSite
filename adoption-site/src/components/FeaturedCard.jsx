@@ -8,14 +8,16 @@ import {DataContext} from '../DataContext'
 
 function FeaturedCard(props) {
 
-    const {featuredPet, setFeaturedPet} = useContext(DataContext)
+const {featuredPet, setFeaturedPet} = useContext(DataContext)
 let navigate = useNavigate();
 
+
+//naviage to AnimalDetails component
 const showDetails = (id) => {
     setFeaturedPet(props.pet)
     navigate(`${id}`);
 }
-
+    //if the pet chosen has a photo - show photo
     if (props.pet.photos.length>0)
     {
         return (
@@ -33,7 +35,7 @@ const showDetails = (id) => {
             </div>
         );
     }
-
+// if the pet does not have a photo, choose the correct icon (either dog or cat)
     else if (props.pet.type === "Cat") {
     return (
         <div className="featured-card" onClick ={()=>showDetails(props.pet.id)}>

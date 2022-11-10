@@ -10,6 +10,7 @@ import { AiOutlineHeart } from 'react-icons/ai'
 
 function AnimalDetails(props) {
 
+//variables
 let {id} = useParams()
 const {currentSearch, setCurrentSearch} = useContext(DataContext)
 const {featuredPet, setFeaturedPet} = useContext(DataContext)
@@ -18,7 +19,16 @@ const [pet, setPet] = useState('')
 let photoArr=[];
 let breed = ""; 
 let attributes = [];
+let settings = {
+    dots:true,
+    infinite: true,
+    draggable: true,
+    adaptiveHeight: true,
 
+}
+
+
+//functions
 const saver = () => {
     if (saved.includes(pet))
     {
@@ -30,14 +40,20 @@ const saver = () => {
     }
 }
 
-
 useEffect(()=> {
     if (featuredPet != null && featuredPet.id === parseInt(id)) {
         setPet(featuredPet)
     }else if (saved.length > 0){
         let selectedPet = saved.find(
             (pet) => pet.id === parseInt(id))
-        setPet(selectedPet)
+            if(selectedPet!=undefined){
+                setPet(selectedPet)
+            } else {
+                let selectedPet = currentSearch.find(
+                    (pet) => pet.id === parseInt(id))
+                    setPet(selectedPet)
+            }
+        
     } else {
         let selectedPet = currentSearch.find(
             (pet) => pet.id === parseInt(id))
@@ -47,7 +63,7 @@ useEffect(()=> {
 
 
 
-
+//parse out data from API call and relocate to variables
 if ( pet ){
     for ( let i=0; i<pet.photos.length; i++) {
     photoArr.push(pet.photos[i].large)
@@ -70,16 +86,6 @@ if ( pet ){
         attributes.push("Yes! See Description")
     } else {attributes.push("None!")}
 }
-
-let settings = {
-    dots:true,
-    infinite: true,
-    draggable: true,
-    adaptiveHeight: true,
-
-}
-
-
 
     return pet ? (
         <div className= "details-container">

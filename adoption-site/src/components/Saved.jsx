@@ -7,6 +7,7 @@ function Saved(props) {
 
 const {saved, setSaved} = useContext(DataContext)
 
+//check for saved pets, if not let user know that nothing is saved
     return saved.length != 0 ? (
         <div className="search-container" >
             <div className="search-grid"> 
