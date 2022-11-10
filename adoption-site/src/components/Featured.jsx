@@ -5,6 +5,7 @@ import axios from 'axios';
 import FeaturedCard from './FeaturedCard';
 
 
+
 function Featured(props) {
 
 const [animalData, setAnimalData] = useState([]);

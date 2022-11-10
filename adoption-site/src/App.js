@@ -64,7 +64,7 @@ const getUsername = (input) =>{
           <Route path="/Login" element={<Login getLogInStatus={getLogInStatus} username={username} getUsername= {getUsername}/>}/>
           <Route path="/LogOut" element={<LogOut getLogInStatus={getLogInStatus}/>}/>
           <Route path = "Search/:id" element={<AnimalDetails/>}/>
-          <Route path="/Search" element={<Search/>}/>
+          <Route path="/Search" element={<Search initialState={initialState}/>}/>
           <Route path="/:id" element = {<AnimalDetails/>}/>
           <Route path="/Saved/:id" element={<AnimalDetails/>}/>
         </Routes>

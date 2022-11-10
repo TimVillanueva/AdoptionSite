@@ -9,6 +9,7 @@ import { GiCancel} from 'react-icons/gi'
 import { useNavigate } from 'react-router-dom'
 import Error from './Error';
 
+
 function Search(props) {
 
 let navigate = useNavigate();
@@ -47,7 +48,7 @@ useEffect(()=>{
     return (<Error/>)
     }
 } 
-    const trimFilters = () => {
+const trimFilters = () => {
         let tempArr=[];
         for (let i=0; i<filters.length; i++){
             if (filters[i] != ''){
@@ -80,11 +81,20 @@ const removeFilter = (index) => {
 
 const handleSubmit=(e)=>{
 e.preventDefault();
+setFilters(props.initialState)
+setFilters([
+    searchCriteria.type,
+    searchCriteria.age ,
+    searchCriteria.size,
+    searchCriteria.breed, ])
+setCounter(counter=>counter+1)
+console.log(filters)
 }
 
 
     return currentSearch.length>0 ? (
-        <div className="search-container">
+        // Current Filters
+        <div className="search-container"> 
             <div className="search-header">
                 <h1 style={{paddingLeft: "10px"}}>Current Filters:</h1> 
                 {filters.map((filter, index)=>(
@@ -92,11 +102,12 @@ e.preventDefault();
                 ))}
             </div>
             <div className="search-main">
+                {/* Advanced Search Menu */}
                 <div className="search-advanced">
                     <h3>Advanced Search</h3>
                     <form className = "search-advanced-form" onSubmit={handleSubmit}>
                         <h4 style={{marginBottom: "10px"}}>Pet:</h4>
-                        <select>
+                        <select value={searchCriteria.type} onChange={(e)=>setSearchCriteria({...searchCriteria, type: e.target.value})}>
                             <option value="">None</option>
                             <option value="dog">Dogs</option>
                             <option value="cat">Cats</option>
@@ -107,7 +118,7 @@ e.preventDefault();
                             <option value="barnyard">Barnyard</option>
                         </select>
                         <h4 style={{marginBottom: "10px"}}>Size</h4>
-                        <select>
+                        <select value={searchCriteria.size} onChange={(e)=>setSearchCriteria({...searchCriteria, size: e.target.value})}>
                             <option value="">None</option>
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
@@ -115,7 +126,7 @@ e.preventDefault();
                             <option value="xlarge">X-Large</option>
                         </select>
                         <h4 style={{marginBottom: "10px"}}>Age</h4>
-                        <select>
+                        <select value={searchCriteria.age} onChange={(e)=>setSearchCriteria({...searchCriteria, age: e.target.value})}>
                             <option value="">None</option>
                             <option value="baby">Baby</option>
                             <option value="young">Young</option>
@@ -128,6 +139,7 @@ e.preventDefault();
                         <input type="submit" value="Update Search"/>
                     </form>
                 </div>
+                {/* Main search grid */}
                 <div className="search-grid">
                     {
                         currentSearch.map((card)=>(
